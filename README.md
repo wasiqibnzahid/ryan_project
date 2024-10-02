@@ -1,50 +1,32 @@
-# React + TypeScript + Vite
+# Basic Project Structure
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The project is set up in a way that would be similar to how I would set this up in an actual project
 
-Currently, two official plugins are available:
+# Data Fetching
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+We are using @tanstack/react-query for fetching data
+In the src/hooks folder you can find all the hooks that are being used to return data
+The src/services folder has all the api calls (Currently api calls are returning dummy data). They are set up in a way that you can just comment the dummy data and it would switch to actual apis (provided the endpoints work)
 
-## Expanding the ESLint configuration
+# UI Components
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Utilizing Shadcn and tailwindcss as requested - We have the components added from shadcn
+Currently added components
 
-- Configure the top-level `parserOptions` property like this:
+- Table
+- Button
+- Card
+- Chart
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+# Typescript and Typings
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+All Typings are present in src/types folder
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+# Tables
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+The tables are using @tanstack/react-table and shadcn tables
+src/components/common/AppTable.tsx is the component I'll be using for all tables, its styled and uses shadcn's table and react-table to manage ui and data
+
+# What's left after this commit
+I need to combine all the created elements and join them together and work on the ui
+Create a navbar and footer
