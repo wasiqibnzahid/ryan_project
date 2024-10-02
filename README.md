@@ -28,7 +28,10 @@ The tables are using @tanstack/react-table and shadcn tables
 src/components/common/AppTable.tsx is the component I'll be using for all tables, its styled and uses shadcn's table and react-table to manage ui and data
 
 # What's left after this commit
-Doughnut chart is done - using dummy data
-I need to combine all the created elements and join them together and work on the ui
-Create a navbar and footer
+- Doughnut chart is done - using dummy data
+- I need to combine all the created elements and join them together and work on the ui
+- Create a navbar and footer
 
+
+# Time spent until now
+Around 1 hour
