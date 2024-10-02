@@ -3,15 +3,33 @@ import { AppTable } from "@/components/common/AppTable";
 import { useReports } from "@/hooks";
 import { createColumnHelper } from "@tanstack/react-table";
 import { Report } from "@/types";
+import { Button } from "../ui/button";
+import { formatDate } from "@/utils";
 const columnHelper = createColumnHelper<Report>();
 const columns = [
   columnHelper.accessor("name", {
-    header: () => "Name", // To capitalize
+    cell(props) {
+      return (
+        <div className="font-semibold border-solid border-b-[#919191] text-nowrap border-b-[1px]">
+          {props.getValue()}
+        </div>
+      );
+    },
   }),
-  columnHelper.accessor("description", {}),
-  columnHelper.accessor("category", {}),
+  columnHelper.accessor("description", {
+    cell(props) {
+      return <div className="text-muted">{props.getValue()}</div>;
+    },
+  }),
+  columnHelper.accessor("category", {
+    cell: ({ getValue }) => (
+      <Button className="bg-accent-light rounded-[30px] hover:bg-accent-light cursor-default bg-opacity-10 text-accent-foreground">
+        {getValue()}
+      </Button>
+    ),
+  }),
   columnHelper.accessor("modified", {
-    cell: ({ getValue }) => <div> {getValue()}</div>, // Will be used for formatting later on
+    cell: ({ getValue }) => <>{formatDate(getValue())}</>,
   }),
 ];
 
@@ -20,18 +38,11 @@ export const ReportTable = () => {
   return (
     <>
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold ">Report</h2>
-        <span>
-          <input
-            checked
-            id="checked-checkbox"
-            type="checkbox"
-            value=""
-            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-          />
-          {"  "}
-          All Report
-        </span>
+        <h2 className="text-xl font-bold text-accent-foreground">Reports</h2>
+        <div className="flex justify-end items-center gap-2">
+          <span>All Reports</span>
+          <Button className="bg-[#1694cc] px-1.5 py-0 h-6" >&rarr;</Button>
+        </div>
       </div>
       <hr className="bg-gradient-to-r from-cyan-400 to-primary opacity-20 h-1 my-5" />
       <AppTable data={reports} columns={columns} />;

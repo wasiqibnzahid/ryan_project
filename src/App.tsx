@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="bg-background min-h-[100vh] ">
       <div className="h-16 bg-black text-white flex justify-between px-5 items-center">
-        <i class="fa-solid fa-bars"></i>
+        <i className="fa-solid fa-bars"></i>
         <span>user@company.com</span>
       </div>
       <div className="lg:w-[95vw] mx-auto">

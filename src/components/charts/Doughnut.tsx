@@ -1,15 +1,7 @@
 import React from "react";
-import { Car, TrendingUp } from "lucide-react";
 import { Label, Pie, PieChart } from "recharts";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
@@ -18,44 +10,26 @@ import {
 } from "@/components/ui/chart";
 
 const chartData = [
-  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 287, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 190, fill: "var(--color-other)" },
+  { duration: "total_time", value: 12, fill: "#7a13ff" },
+  {
+    duration: "consumed_time",
+    value: 3,
+    fill: "rgb(170 229 255)",
+  },
 ];
 
-const chartConfig = {
-  visitors: {
-    label: "Visitors",
-  },
-  chrome: {
-    label: "Chrome",
+const chartConfig: Record<string, { label: string; color: string }> = {
+  consumed_time: {
+    label: "Contract Duration",
     color: "hsl(var(--chart-1))",
   },
-  safari: {
-    label: "Safari",
-    color: "hsl(var(--chart-2))",
-  },
-  firefox: {
-    label: "Firefox",
-    color: "hsl(var(--chart-3))",
-  },
-  edge: {
-    label: "Edge",
-    color: "hsl(var(--chart-4))",
-  },
-  other: {
-    label: "Other",
-    color: "hsl(var(--chart-5))",
+  total_time: {
+    label: "Total Time",
+    color: "#7a13ff",
   },
 } satisfies ChartConfig;
 
 export const Doughnut: React.FC = () => {
-  const totalVisitors = React.useMemo(() => {
-    return chartData.reduce((acc, curr) => acc + curr.visitors, 0);
-  }, []);
-
   return (
     <Card className="pb-10">
       <ChartContainer
@@ -69,8 +43,8 @@ export const Doughnut: React.FC = () => {
           />
           <Pie
             data={chartData}
-            dataKey="visitors"
-            nameKey="browser"
+            dataKey="value"
+            nameKey="duration"
             innerRadius={60}
             strokeWidth={5}
           >
@@ -83,6 +57,7 @@ export const Doughnut: React.FC = () => {
                       y={viewBox.cy}
                       textAnchor="middle"
                       dominantBaseline="middle"
+                      className="bg-red-500"
                     >
                       <tspan
                         x={viewBox.cx}
@@ -106,13 +81,31 @@ export const Doughnut: React.FC = () => {
           </Pie>
         </PieChart>
       </ChartContainer>
-      <div className="flex flex-col w-[80%] m-auto">
+      <div className="flex flex-col w-[80%] m-auto border-b-[#ccc] border-2 border-solid border-transparent pb-2 mb-2">
         {chartData.map((x) => (
-          <div className="flex justify-between">
-            <span>{x.browser}</span>
-            <span className="font-bold">{x.visitors}</span>
+          <div className="flex justify-between capitalize">
+            <span className="text-black opacity-70">
+              {chartConfig[x.duration].label}
+            </span>
+            <span className="font-bold">{x.value} Months</span>
           </div>
         ))}
+      </div>
+      <div className="flex flex-col w-[80%] m-auto pb-2 mb-2">
+        <div className="flex justify-between capitalize">
+          <span className="text-black opacity-70">
+            Contracted Items to be Styled
+          </span>
+          <span className="font-bold">52,024</span>
+        </div>
+        <div className="flex justify-between capitalize">
+          <span className="text-black opacity-70">Styled to Date</span>
+          <span className="font-bold">52,024</span>
+        </div>
+        <div className="flex justify-between capitalize">
+          <span className="text-black opacity-70">Remaining Items</span>
+          <span className="font-bold">26,012</span>
+        </div>
       </div>
     </Card>
   );

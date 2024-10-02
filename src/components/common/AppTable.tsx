@@ -3,28 +3,26 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "../ui/table";
 import {
-  ColumnDef,
   useReactTable,
   getCoreRowModel,
   flexRender,
   AccessorKeyColumnDef,
 } from "@tanstack/react-table";
 
-interface AppTableProps<TData, T2 = unknown> {
+interface AppTableProps<TData> {
   data: TData[];
-  columns: AccessorKeyColumnDef<TData, T2>[];
+  columns: AccessorKeyColumnDef<TData, any>[];
 }
 
-const AppTable = <TData, T2>({
+const AppTable = <TData,>({
   data,
   columns,
-}: AppTableProps<TData, T2>): React.ReactElement => {
+}: AppTableProps<TData>): React.ReactElement => {
   const table = useReactTable<TData>({
     data,
     columns,
@@ -38,7 +36,11 @@ const AppTable = <TData, T2>({
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id}>
+                  <TableHead
+                    key={header.id}
+                     
+                    className="capitalize text-accent-foreground" 
+                  >
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -54,7 +56,7 @@ const AppTable = <TData, T2>({
             {table.getRowModel().rows.map((row) => (
               <TableRow key={row.id}>
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
+                  <TableCell key={cell.id} className="">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}

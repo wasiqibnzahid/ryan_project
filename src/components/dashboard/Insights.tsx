@@ -8,8 +8,8 @@ export default function Insights() {
   return (
     <div className="grid grid-cols-3 gap-10">
       <div className="col-span-2">
-        <ReportTable />
         <ProgramTable />
+        <ReportTable />
         <DocumentTable />
       </div>
       <div>
