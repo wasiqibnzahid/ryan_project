@@ -33,7 +33,7 @@ const columns = [
 export const ProgramTable = () => {
   const { programs } = usePrograms();
   return (
-    <>
+    <div className="mb-4">
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold text-accent-foreground">Programs</h2>
         <div className="flex justify-end items-center gap-2">
@@ -42,7 +42,7 @@ export const ProgramTable = () => {
         </div>
       </div>
       <hr className="bg-gradient-to-r from-cyan-400 to-primary opacity-20 h-1 my-5" />
-      <AppTable data={programs} columns={columns} />;
-    </>
+      <AppTable data={programs} columns={columns} />
+    </div>
   );
 };

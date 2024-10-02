@@ -36,8 +36,8 @@ const columns = [
 export const ReportTable = () => {
   const { reports } = useReports();
   return (
-    <>
-      <div className="flex items-center justify-between">
+    <div className="mb-6">
+      <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-bold text-accent-foreground">Reports</h2>
         <div className="flex justify-end items-center gap-2">
           <span>All Reports</span>
@@ -45,7 +45,7 @@ export const ReportTable = () => {
         </div>
       </div>
       <hr className="bg-gradient-to-r from-cyan-400 to-primary opacity-20 h-1 my-5" />
-      <AppTable data={reports} columns={columns} />;
-    </>
+      <AppTable data={reports} columns={columns} />
+    </div>
   );
 };

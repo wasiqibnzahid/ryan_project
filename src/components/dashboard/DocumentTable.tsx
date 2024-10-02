@@ -24,7 +24,7 @@ const columns = [
 export const DocumentTable = () => {
   const { documents } = useDocuments();
   return (
-    <>
+    <div className="mb-6">
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold text-accent-foreground">Documents</h2>
         <div className="flex justify-end items-center gap-2">
@@ -33,7 +33,7 @@ export const DocumentTable = () => {
         </div>
       </div>
       <hr className="bg-gradient-to-r from-cyan-400 to-primary opacity-20 h-1 my-5" />
-      <AppTable data={documents} columns={columns} />;
-    </>
+      <AppTable data={documents} columns={columns} />
+    </div>
   );
 };
